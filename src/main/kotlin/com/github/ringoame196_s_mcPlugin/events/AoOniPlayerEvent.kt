@@ -9,9 +9,8 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerMoveEvent
-import org.bukkit.plugin.Plugin
 
-class AoOniPlayerEvent(plugin: Plugin) : Listener {
+class AoOniPlayerEvent() : Listener {
     @EventHandler
     fun onPlayerJump(e: PlayerMoveEvent) { // ジャンプ
         val player = e.player
@@ -35,7 +34,9 @@ class AoOniPlayerEvent(plugin: Plugin) : Listener {
     }
 
     private fun isJumpInvalid(difference: Float): Boolean { // ジャンプ無効にするか
-        return difference > 0.0f && difference != 0.5f
+        // 0.5f 半ブロック
+        // 0.0625 カーペット
+        return difference > 0.0f && difference != 0.5f && difference != 0.0625f
     }
 
     @EventHandler
