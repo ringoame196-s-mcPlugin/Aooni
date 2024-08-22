@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.plugin.Plugin
 import java.io.File
 
-class AooniChestSettingEvent(plugin: Plugin) : Listener {
+class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     private val config = plugin.config
     private val ymlMaterial = YmlManager()
     private val aooniWorld = config.getString("aooni_world")
