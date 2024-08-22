@@ -36,28 +36,24 @@ dependencies {
 }
 
 configure<BukkitPluginDescription> {
-    main = "@group@.Main"
-    version = gitVersion()
+    main = "com.github.ringoame196_s_mcPlugin.Main"
+    version = pluginVersion
     apiVersion = "1." + pluginVersion.split(".")[1]
-    /*
-    コマンド追加用
     commands {
-        register("test") {
-        description = "This is a test command!"
-        aliases = listOf("t")
-        permission = "testplugin.test"
-        usage = "Just run the command!"
+        register("aooni") {
+        description = "青鬼コマンド"
+        permission = "op"
+        usage = "/aooni"
         }
     }
-    */
 }
 
 tasks.withType<ShadowJar> {
     configurations = listOf(shadowImplementation)
     archiveClassifier.set("")
-    relocate("kotlin", "@group@.libs.kotlin")
-    relocate("org.intellij.lang.annotations", "@group@.libs.org.intellij.lang.annotations")
-    relocate("org.jetbrains.annotations", "@group@.libs.org.jetbrains.annotations")
+    relocate("kotlin", "com.github.ringoame196_s_mcPlugin.libs.kotlin")
+    relocate("org.intellij.lang.annotations", "com.github.ringoame196_s_mcPlugin.libs.org.intellij.lang.annotations")
+    relocate("org.jetbrains.annotations", "com.github.ringoame196_s_mcPlugin.libs.org.jetbrains.annotations")
 }
 
 tasks.named("build") {
