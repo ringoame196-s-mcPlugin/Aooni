@@ -36,7 +36,7 @@ configurations["implementation"].extendsFrom(shadowImplementation)
 dependencies {
     shadowImplementation(kotlin("stdlib"))
     compileOnly("org.spigotmc:spigot-api:$pluginVersion-R0.1-SNAPSHOT")
-    compileOnly("net.skinsrestorer:skinsrestorer-api:15.4.1")
+    compileOnly("net.skinsrestorer:skinsrestorer-api:15.4.2")
 }
 
 configure<BukkitPluginDescription> {
