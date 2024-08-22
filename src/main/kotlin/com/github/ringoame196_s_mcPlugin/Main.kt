@@ -1,6 +1,7 @@
 package com.github.ringoame196_s_mcPlugin
 
-import com.github.ringoame196_s_mcPlugin.events.AooniChestSettingEvent
+import com.github.ringoame196_s_mcPlugin.events.AoOniChestSettingEvent
+import com.github.ringoame196_s_mcPlugin.events.AoOniPlayerEvent
 import com.github.ringoame196_s_mcPlugin.events.PlayerInteractEvent
 import com.github.ringoame196_s_mcPlugin.managers.AoOniTeamManager
 import org.bukkit.ChatColor
@@ -16,13 +17,14 @@ class Main : JavaPlugin() {
         val command = getCommand("aooni")
         command!!.setExecutor(Command())
         command.tabCompleter = TabCompleter()
-        server.pluginManager.registerEvents(AooniChestSettingEvent(plugin), plugin)
+        server.pluginManager.registerEvents(AoOniChestSettingEvent(plugin), plugin)
         server.pluginManager.registerEvents(PlayerInteractEvent(plugin), plugin)
+        server.pluginManager.registerEvents(AoOniPlayerEvent(plugin), plugin)
     }
 
     private fun makeTeam() {
         val aooniTeamManager = AoOniTeamManager()
-        aooniTeamManager.makeTeam("aooni", "青鬼", ChatColor.DARK_BLUE)
-        aooniTeamManager.makeTeam("hiroshi", "ひろし", ChatColor.GOLD)
+        aooniTeamManager.makeTeam(AoOniConst.AoOniTeamName, "青鬼", ChatColor.BLUE)
+        aooniTeamManager.makeTeam(AoOniConst.HiroshiTeamName, "ひろし", ChatColor.GOLD)
     }
 }
