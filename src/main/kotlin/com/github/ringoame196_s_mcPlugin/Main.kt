@@ -19,7 +19,7 @@ class Main : JavaPlugin() {
         command.tabCompleter = TabCompleter()
         server.pluginManager.registerEvents(AoOniChestSettingEvent(plugin), plugin)
         server.pluginManager.registerEvents(PlayerInteractEvent(plugin), plugin)
-        server.pluginManager.registerEvents(AoOniPlayerEvent(plugin), plugin)
+        server.pluginManager.registerEvents(AoOniPlayerEvent(), plugin)
     }
 
     private fun makeTeam() {

@@ -10,7 +10,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerMoveEvent
 
-class AoOniPlayerEvent() : Listener {
+class AoOniPlayerEvent : Listener {
     @EventHandler
     fun onPlayerJump(e: PlayerMoveEvent) { // ジャンプ
         val player = e.player
