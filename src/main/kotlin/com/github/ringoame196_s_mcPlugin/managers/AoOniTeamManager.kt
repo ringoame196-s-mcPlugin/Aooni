@@ -4,12 +4,12 @@ import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.scoreboard.Team
 
-class AooniTeamManager {
+class AoOniTeamManager {
     private val scoreboard = Bukkit.getScoreboardManager()?.mainScoreboard
 
-    fun makeTeam(name: String, color: ChatColor) {
-        if (!isExistsTeam(name)) {
-            scoreboard?.registerNewTeam(name)?.apply {
+    fun makeTeam(id: String, name: String, color: ChatColor) {
+        if (!isExistsTeam(id)) {
+            scoreboard?.registerNewTeam(id)?.apply {
                 prefix = "[$name]" // prefixの登録
                 setColor(color) // カラーの設定
                 setAllowFriendlyFire(false) // フレンドリファイヤーoff
@@ -19,16 +19,16 @@ class AooniTeamManager {
         }
     }
 
-    fun resetAllPlayer(name: String) {
-        if (isExistsTeam(name)) { // チームが存在するか
-            val team = scoreboard?.getTeam(name) // チーム取得
+    fun resetAllPlayer(id: String) {
+        if (isExistsTeam(id)) { // チームが存在するか
+            val team = scoreboard?.getTeam(id) // チーム取得
             for (entity in team?.entries ?: return) { // チームに入っているentityを全削除
                 team.removeEntry(entity)
             }
         }
     }
 
-    private fun isExistsTeam(name:String):Boolean {
+    private fun isExistsTeam(name: String): Boolean {
         return scoreboard?.getTeam(name) != null
     }
 }

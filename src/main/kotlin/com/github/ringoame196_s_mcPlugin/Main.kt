@@ -2,7 +2,7 @@ package com.github.ringoame196_s_mcPlugin
 
 import com.github.ringoame196_s_mcPlugin.events.AooniChestSettingEvent
 import com.github.ringoame196_s_mcPlugin.events.PlayerInteractEvent
-import com.github.ringoame196_s_mcPlugin.managers.AooniTeamManager
+import com.github.ringoame196_s_mcPlugin.managers.AoOniTeamManager
 import org.bukkit.ChatColor
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -21,8 +21,8 @@ class Main : JavaPlugin() {
     }
 
     private fun makeTeam() {
-        val aooniTeamManager = AooniTeamManager()
-        aooniTeamManager.makeTeam("青鬼", ChatColor.DARK_BLUE)
-        aooniTeamManager.makeTeam("ひろし", ChatColor.GOLD)
+        val aooniTeamManager = AoOniTeamManager()
+        aooniTeamManager.makeTeam("aooni", "青鬼", ChatColor.DARK_BLUE)
+        aooniTeamManager.makeTeam("hiroshi", "ひろし", ChatColor.GOLD)
     }
 }
