@@ -1,5 +1,7 @@
 package com.github.ringoame196_s_mcPlugin.events
 
+import com.github.ringoame196_s_mcPlugin.consts.AoOniConst
+import com.github.ringoame196_s_mcPlugin.managers.LocationManager
 import com.github.ringoame196_s_mcPlugin.managers.YmlManager
 import org.bukkit.ChatColor
 import org.bukkit.Location
@@ -16,15 +18,15 @@ import java.io.File
 class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     private val config = plugin.config
     private val ymlMaterial = YmlManager()
+    private val locationManager = LocationManager()
     private val aoOniWorld = config.getString("aoOni_world")
     private val gameData = File(plugin.dataFolder, "game.yml")
-    private val key = "aoOniChests"
+    private val key = AoOniConst.AO_ONI_CHEST_KEY
 
     @EventHandler
     fun onBlockPlace(e: BlockPlaceEvent) {
         val player = e.player
         val block = e.block
-        val world = player.world.name
 
         if (isExecutionAllowed(player, block)) {
             // 設定されたワールドでOPがチェストを置いた場合のみ動かす
@@ -56,14 +58,14 @@ class AoOniChestSettingEvent(plugin: Plugin) : Listener {
 
     private fun additionChest(location: Location) {
         val chestList = ymlMaterial.acquisitionListValue(gameData, key)
-        val chestLocation = "x:${location.x}y:${location.y}z:${location.z}"
+        val chestLocation = locationManager.conversionString(location) // チェストの座標
         chestList?.add(chestLocation)
         ymlMaterial.setValue(gameData, key, chestList)
     }
 
     private fun deletionChest(location: Location) {
         val chestList = ymlMaterial.acquisitionListValue(gameData, key)
-        val chestLocation = "x:${location.x}y:${location.y}z:${location.z}"
+        val chestLocation = locationManager.conversionString(location) // チェストの座標
         chestList?.remove(chestLocation)
         ymlMaterial.setValue(gameData, key, chestList)
     }
