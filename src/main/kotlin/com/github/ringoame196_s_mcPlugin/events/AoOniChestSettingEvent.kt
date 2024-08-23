@@ -16,9 +16,9 @@ import java.io.File
 class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     private val config = plugin.config
     private val ymlMaterial = YmlManager()
-    private val aooniWorld = config.getString("aooni_world")
+    private val aoOniWorld = config.getString("aoOni_world")
     private val gameData = File(plugin.dataFolder, "game.yml")
-    private val key = "aooniChests"
+    private val key = "aoOniChests"
 
     @EventHandler
     fun onBlockPlace(e: BlockPlaceEvent) {
@@ -51,7 +51,7 @@ class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     private fun isExecutionAllowed(player: Player, block: Block): Boolean {
         val world = player.world.name
         val type = block.type
-        return world == aooniWorld && type == Material.CHEST && player.isOp
+        return world == aoOniWorld && type == Material.CHEST && player.isOp
     }
 
     private fun additionChest(location: Location) {

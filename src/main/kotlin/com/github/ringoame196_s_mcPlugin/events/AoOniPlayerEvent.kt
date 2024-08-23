@@ -1,13 +1,15 @@
 package com.github.ringoame196_s_mcPlugin.events
 
-import com.github.ringoame196_s_mcPlugin.AoOniConst
+import com.github.ringoame196_s_mcPlugin.consts.AoOniConst
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.ChatColor
+import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerMoveEvent
 
 class AoOniPlayerEvent : Listener {
@@ -30,7 +32,7 @@ class AoOniPlayerEvent : Listener {
 
     private fun isAoOni(player: Player): Boolean {
         val team = player.scoreboard.getEntryTeam(player.name) // team取得
-        return team?.name == AoOniConst.AoOniTeamName
+        return team?.name == AoOniConst.AO_ONI_TEAM_NAME
     }
 
     private fun isJumpInvalid(difference: Float): Boolean { // ジャンプ無効にするか
@@ -44,6 +46,17 @@ class AoOniPlayerEvent : Listener {
         val player = e.entity as? Player ?: return
         if (isAoOni(player)) { // 青鬼だった場合
             e.isCancelled = true // 無敵
+        }
+    }
+
+    @EventHandler
+    fun onOpenChest(e: PlayerInteractEvent) {
+        val player = e.player
+        val block = e.clickedBlock ?: return
+        val blockType = block.type
+
+        if (isAoOni(player) && blockType == Material.CHEST) { // 青鬼はチェストを開かせない
+            e.isCancelled = true
         }
     }
 }
