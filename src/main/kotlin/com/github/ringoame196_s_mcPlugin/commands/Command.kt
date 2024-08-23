@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin
 
 class Command(plugin: Plugin) : CommandExecutor {
     private val gameFileManager = GameFileManager(plugin)
-    private val locationManager = LocationManager()
+    private val locationManager = LocationManager(plugin)
     private val config = plugin.config // configファイル
     private val aoOniWorld = config.getString(AoOniConst.AO_ONI_WORLD_KEY) // 青鬼ワールド
 
