@@ -1,8 +1,8 @@
 package com.github.ringoame196_s_mcPlugin.events
 
 import com.github.ringoame196_s_mcPlugin.consts.AoOniConst
+import com.github.ringoame196_s_mcPlugin.managers.GameFileManager
 import com.github.ringoame196_s_mcPlugin.managers.LocationManager
-import com.github.ringoame196_s_mcPlugin.managers.YmlManager
 import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.Material
@@ -13,14 +13,12 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.plugin.Plugin
-import java.io.File
 
 class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     private val config = plugin.config
-    private val ymlMaterial = YmlManager()
-    private val locationManager = LocationManager()
-    private val aoOniWorld = config.getString("aoOni_world")
-    private val gameData = File(plugin.dataFolder, "game.yml")
+    private val gameFileManager = GameFileManager(plugin)
+    private val locationManager = LocationManager(plugin)
+    private val aoOniWorld = config.getString(AoOniConst.AO_ONI_WORLD_KEY)
     private val key = AoOniConst.AO_ONI_CHEST_KEY
 
     @EventHandler
@@ -57,16 +55,16 @@ class AoOniChestSettingEvent(plugin: Plugin) : Listener {
     }
 
     private fun additionChest(location: Location) {
-        val chestList = ymlMaterial.acquisitionListValue(gameData, key)
+        val chestList = gameFileManager.acquisitionList(key)
         val chestLocation = locationManager.conversionString(location) // チェストの座標
         chestList?.add(chestLocation)
-        ymlMaterial.setValue(gameData, key, chestList)
+        gameFileManager.save(key, chestList)
     }
 
     private fun deletionChest(location: Location) {
-        val chestList = ymlMaterial.acquisitionListValue(gameData, key)
+        val chestList = gameFileManager.acquisitionList(key)
         val chestLocation = locationManager.conversionString(location) // チェストの座標
         chestList?.remove(chestLocation)
-        ymlMaterial.setValue(gameData, key, chestList)
+        gameFileManager.save(key, chestList)
     }
 }
