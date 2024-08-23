@@ -7,14 +7,22 @@ class YmlManager {
     private fun acquisitionYml(file: File): YamlConfiguration {
         return YamlConfiguration.loadConfiguration(file)
     }
+
     fun acquisitionListValue(file: File, key: String): MutableList<String>? {
         val ymlFile = acquisitionYml(file)
         return ymlFile.getStringList(key)
     }
+
     fun acquisitionStringValue(file: File, key: String): String? {
         val ymlFile = acquisitionYml(file)
         return ymlFile.getString(key)
     }
+
+    fun acquisitionBooleanValue(file: File, key: String): Boolean {
+        val ymlFile = acquisitionYml(file)
+        return ymlFile.getBoolean(key)
+    }
+
     fun setValue(file: File, key: String, value: Any?) {
         val ymlFile = acquisitionYml(file)
         ymlFile.set(key, value)
