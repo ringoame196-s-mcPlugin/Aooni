@@ -12,8 +12,8 @@ class LocationManager(plugin: Plugin) {
         return "x:${location.x.toInt() + 0.5}y:${location.y}z:${location.z.toInt() + 0.5}"
     }
 
-    fun resurrectionCoordinate(locationText: String):Location? {
-        val world = Bukkit.getWorld(aoOniWorldName ?:return null)
+    fun resurrectionCoordinate(locationText: String): Location? {
+        val world = Bukkit.getWorld(aoOniWorldName ?: return null)
         val regex = Regex("""x:(\d+)y:(\d+)z:(\d+)""")
         val matchResult = regex.find(locationText)
 

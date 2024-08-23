@@ -18,4 +18,8 @@ class GameFileManager(plugin: Plugin) {
     fun acquisitionString(key: String): String? {
         return ymlManager.acquisitionStringValue(gameFile, key)
     }
+
+    fun acquisitionBoolean(key: String): Boolean {
+        return ymlManager.acquisitionBooleanValue(gameFile, key)
+    }
 }
