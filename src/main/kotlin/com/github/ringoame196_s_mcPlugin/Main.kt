@@ -1,5 +1,8 @@
 package com.github.ringoame196_s_mcPlugin
 
+import com.github.ringoame196_s_mcPlugin.commands.Command
+import com.github.ringoame196_s_mcPlugin.commands.TabCompleter
+import com.github.ringoame196_s_mcPlugin.consts.AoOniConst
 import com.github.ringoame196_s_mcPlugin.events.AoOniChestSettingEvent
 import com.github.ringoame196_s_mcPlugin.events.AoOniPlayerEvent
 import com.github.ringoame196_s_mcPlugin.events.PlayerInteractEvent
@@ -15,7 +18,7 @@ class Main : JavaPlugin() {
         saveResource("game.yml", false)
         makeTeam()
         val command = getCommand("aooni")
-        command!!.setExecutor(Command())
+        command!!.setExecutor(Command(plugin))
         command.tabCompleter = TabCompleter()
         server.pluginManager.registerEvents(AoOniChestSettingEvent(plugin), plugin)
         server.pluginManager.registerEvents(PlayerInteractEvent(plugin), plugin)
@@ -23,8 +26,8 @@ class Main : JavaPlugin() {
     }
 
     private fun makeTeam() {
-        val aooniTeamManager = AoOniTeamManager()
-        aooniTeamManager.makeTeam(AoOniConst.AoOniTeamName, "青鬼", ChatColor.BLUE)
-        aooniTeamManager.makeTeam(AoOniConst.HiroshiTeamName, "ひろし", ChatColor.GOLD)
+        val aoOniTeamManager = AoOniTeamManager()
+        aoOniTeamManager.makeTeam(AoOniConst.AO_ONI_TEAM_NAME, "青鬼", ChatColor.BLUE)
+        aoOniTeamManager.makeTeam(AoOniConst.HIROSHI_TEAM_NAME, "ひろし", ChatColor.GOLD)
     }
 }

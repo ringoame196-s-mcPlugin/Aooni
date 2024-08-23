@@ -1,5 +1,6 @@
 package com.github.ringoame196_s_mcPlugin.events
 
+import com.github.ringoame196_s_mcPlugin.consts.AoOniConst
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.ChatColor
@@ -15,7 +16,7 @@ import org.bukkit.plugin.Plugin
 
 class PlayerInteractEvent(plugin: Plugin) : Listener {
     private val config = plugin.config
-    private val aooniWorld = config.getString("aooni_world")
+    private val aoOniWorld = config.getString(AoOniConst.AO_ONI_WORLD_KEY)
     @EventHandler
     fun onPlayerInteract(e: PlayerInteractEvent) {
         val player = e.player
@@ -41,6 +42,6 @@ class PlayerInteractEvent(plugin: Plugin) : Listener {
         val item = player.inventory.itemInMainHand
         val itemType = item.type
         val gamemode = player.gameMode
-        return world == aooniWorld && blockType == plateType && gamemode != GameMode.CREATIVE && itemType != keyItemType
+        return world == aoOniWorld && blockType == plateType && gamemode != GameMode.CREATIVE && itemType != keyItemType
     }
 }
