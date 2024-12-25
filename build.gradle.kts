@@ -43,6 +43,7 @@ configure<BukkitPluginDescription> {
     main = "com.github.ringoame196_s_mcPlugin.Main"
     version = pluginVersion
     apiVersion = "1." + pluginVersion.split(".")[1]
+    website = "https://github.com/ringoame196-s-mcPlugin"
     commands {
         register("aooni") {
         description = "青鬼コマンド"
@@ -63,7 +64,7 @@ tasks.withType<ShadowJar> {
 tasks.named("build") {
     dependsOn("shadowJar")
     // プラグインを特定のパスへ自動コピー
-    val copyFilePath = "D:/デスクトップ/Twitterサーバー/plugins" // コピー先のフォルダーパス
+    val copyFilePath = "D:/デスクトップ/aooniServer/plugins" // コピー先のフォルダーパス
     val copyFile = File(copyFilePath)
     if (copyFile.exists() && copyFile.isDirectory) {
         doFirst {
