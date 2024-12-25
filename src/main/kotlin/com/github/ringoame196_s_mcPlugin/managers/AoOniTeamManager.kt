@@ -1,11 +1,29 @@
 package com.github.ringoame196_s_mcPlugin.managers
 
+import com.github.ringoame196_s_mcPlugin.AoOniConst
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
+import org.bukkit.entity.Player
 import org.bukkit.scoreboard.Team
 
 class AoOniTeamManager {
     private val scoreboard = Bukkit.getScoreboardManager()?.mainScoreboard
+
+    fun join(player: Player, teamName: String) {
+        val team = scoreboard?.getTeam(teamName) ?: return
+        team.addEntry(player.name)
+        player.scoreboard = scoreboard
+    }
+
+    fun isAoOni(player: Player): Boolean {
+        val team = player.scoreboard.getEntryTeam(player.name) // team取得
+        return team?.name == AoOniConst.AO_ONI_TEAM_NAME
+    }
+
+    fun isHiroshi(player: Player): Boolean {
+        val team = player.scoreboard.getEntryTeam(player.name) // team取得
+        return team?.name == AoOniConst.HIROSHI_TEAM_NAME
+    }
 
     fun makeTeam(id: String, name: String, color: ChatColor) {
         if (!isExistsTeam(id)) {
