@@ -13,7 +13,7 @@ class Main : JavaPlugin() {
         val plugin = this
         saveDefaultConfig() // config生成
         saveResource("game.yml", false)
-        makeTeam()
+        makeTeam() // チーム作成
         val command = getCommand("aooni")
         command!!.setExecutor(Command())
         command.tabCompleter = TabCompleter()
@@ -23,8 +23,9 @@ class Main : JavaPlugin() {
     }
 
     private fun makeTeam() {
-        val aooniTeamManager = AoOniTeamManager()
-        aooniTeamManager.makeTeam(AoOniConst.AoOniTeamName, "青鬼", ChatColor.BLUE)
-        aooniTeamManager.makeTeam(AoOniConst.HiroshiTeamName, "ひろし", ChatColor.GOLD)
+        val aoOniTeamManager = AoOniTeamManager()
+        aoOniTeamManager.makeTeam(AoOniConst.AO_ONI_TEAM_NAME, "青鬼", ChatColor.DARK_BLUE)
+        aoOniTeamManager.makeTeam(AoOniConst.HIROSHI_TEAM_NAME, "ひろし", ChatColor.GOLD)
+        aoOniTeamManager.makeTeam(AoOniConst.ESCAPE_TEAM_NAME, "観戦", ChatColor.YELLOW)
     }
 }
